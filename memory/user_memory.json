@@ -1,0 +1,9 @@
+{
+  "_comment": "This file stores session memory. It is excluded from git (.gitignore). Each key is a session_id.",
+  "example_session": {
+    "user_goal": "Senior ML Engineer",
+    "skills": ["Python", "TensorFlow"],
+    "last_ats_score": 72,
+    "timestamp": "2025-01-01T00:00:00Z"
+  }
+}

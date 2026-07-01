@@ -1,0 +1,7 @@
+google-adk
+streamlit
+python-dotenv
+requests
+pypdf
+tabulate
+pydantic
