@@ -2,7 +2,7 @@ from google.adk.agents import LlmAgent
 
 interview_agent = LlmAgent(
     name="InterviewCoach",
-    model="gemini-2.0-flash",
+    model="gemini-1.5-flash",
     instruction="""You are an expert Technical Interview Coach.
 Generate exactly 15 interview questions split as:
 ## DSA Questions (5)

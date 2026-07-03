@@ -2,7 +2,7 @@ from google.adk.agents import LlmAgent
 
 resume_agent = LlmAgent(
     name="ResumeExpert",
-    model="gemini-2.0-flash",
+    model="gemini-1.5-flash",
     instruction="""You are an expert Technical Recruiter and ATS Specialist.
 Analyze the resume and provide:
 ## 1. ATS Score

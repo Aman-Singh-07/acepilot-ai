@@ -11,7 +11,7 @@ from agents.learning_agent import learning_agent
 
 coordinator_agent = LlmAgent(
     name="AcePilotCoordinator",
-    model="gemini-2.0-flash",
+    model="gemini-1.5-flash",
     instruction="""You are AcePilot, an AI career accelerator.
 When given a resume, skills, and career goal, coordinate with your sub-agents:
 1. Ask ResumeExpert to analyze the resume for ATS score and improvements.
