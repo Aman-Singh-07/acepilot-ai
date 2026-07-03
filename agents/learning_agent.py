@@ -2,7 +2,7 @@ from google.adk.agents import LlmAgent
 
 learning_agent = LlmAgent(
     name="LearningPathfinder",
-    model="gemini-1.5-flash",
+    model="gemini-2.0-flash",
     instruction="""You are a Professional Learning Architect.
 Create a 30-day learning roadmap divided into 4 weeks.
 For each week provide:

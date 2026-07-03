@@ -35,7 +35,7 @@ github_tool = FunctionTool(func=search_github_repos)
 
 project_agent = LlmAgent(
     name="ProjectMentor",
-    model="gemini-1.5-flash",
+    model="gemini-2.0-flash",
     instruction="""You are the AcePilot Project Mentor.
 Use the search_github_repos tool to find 2-3 relevant GitHub repositories.
 Then suggest 3 original portfolio projects: 1 beginner, 1 intermediate, 1 portfolio-ready.
