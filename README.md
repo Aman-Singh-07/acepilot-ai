@@ -1,26 +1,36 @@
-# 🚀 AcePilot AI: The Agentic Career Accelerator
+# 🚀 AcePilot AI: Multi-Agent Career Copilot
+
 **Capstone Project - Google AI Agents Intensive Course**
 
 ## 📖 Overview
-AcePilot AI is a multi-agent system built with the **Google ADK** designed to help users bridge the gap between their current skills and their dream career. It falls under the **Agents for Good** track.
+Career coaching is expensive and inaccessible for most students. AcePilot AI democratizes career guidance by providing a free, personalized AI career coach. Built for the **Agents for Good** track, it uses a coordinated team of specialist agents to bridge the gap between a student's current skills and their dream career.
 
 ## 🛠️ Tech Stack
-- **Orchestration:** Google ADK (Agent Development Kit)
-- **Model:** Gemini 1.5 Pro & Flash
-- **MCP:** Custom GitHub Repository Search Tool
-- **Frontend:** Streamlit
+* **Orchestration:** Google ADK (Agent Development Kit)
+* **Model:** Gemini 2.0 Flash
+* **External Tool (MCP):** GitHub API Repository Search
+* **Frontend:** Streamlit Cloud
+* **Language:** Python
 
 ## 🤖 The Agent Team
-1. **Resume Agent:** Critiques and scores resumes.
-2. **Project Mentor:** Uses MCP to find real GitHub projects.
-3. **Learning Path Agent:** Generates 30-day roadmap.
-4. **Interview Coach:** Provides 30 tailored questions.
-5. **Coordinator:** The central brain managing context handoffs.
+The system uses a central **Coordinator Agent** to manage four specialists:
+1. **Resume Expert:** Analyzes ATS scores, finds missing keywords, and rewrites weak bullet points.
+2. **Project Mentor:** Uses a GitHub MCP tool to fetch live repositories and suggests 3 portfolio projects.
+3. **Learning Pathfinder:** Generates a structured, day-by-day 30-day learning roadmap.
+4. **Interview Coach:** Prepares 15 targeted questions (DSA, Technical, and Behavioral) with model answers.
 
-## 🔒 Security
-- Includes a **Prompt Injection Guard** to prevent unauthorized system overrides and data leaks.
+## 🔒 Security Guardrail
+All user input passes through a strict regex-based security layer (`input_guard.py`) before reaching any agent. It successfully detects and blocks:
+* Prompt Injection & Instruction Overrides
+* Data Exfiltration Attempts
+* Command Injection
+* Jailbreak Frameworks (e.g., DAN)
 
-## 🚀 Installation
-1. `pip install -r requirements.txt`
-2. Add your keys to `.env`
-3. `streamlit run frontend/streamlit_app.py`
+## 🚀 Live Demo
+**Try it here:** [AcePilot AI Streamlit App](https://acepilot-ai-6kkhfyjhsyzgh7n46n2rhb.streamlit.app)
+
+## 💻 Local Installation
+```bash
+git clone [https://github.com/Aman-Singh-07/acepilot-ai.git](https://github.com/Aman-Singh-07/acepilot-ai.git)
+cd acepilot-ai
+pip install -r requirements.txt
