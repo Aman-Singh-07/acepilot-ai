@@ -1,4 +1,3 @@
-
 import os
 import asyncio
 from google.adk.agents import LlmAgent
@@ -11,21 +10,16 @@ from agents.project_agent import project_agent
 from agents.interview_agent import interview_agent
 from agents.learning_agent import learning_agent
 
-# Model fallback list — tries each in order until one works
 MODELS = [
     "gemini-2.0-flash",
     "gemini-2.0-flash-lite",
-    "gemini-1.5-flash-latest",
-    "gemini-1.5-pro-latest",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
 ]
-
-def get_working_model() -> str:
-    """Return the first model name from env or default list."""
-    return os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
 
 coordinator_agent = LlmAgent(
     name="AcePilotCoordinator",
-    model=get_working_model(),
+    model="gemini-2.0-flash",
     instruction="""You are AcePilot, an AI career accelerator.
 When given a resume, skills, and career goal, coordinate with your sub-agents:
 1. Ask ResumeExpert to analyze the resume for ATS score and improvements.
@@ -38,14 +32,10 @@ Then synthesize all outputs into one complete Career Development Report.""",
 )
 
 async def run_coordinator(prompt: str, session_id: str = "default") -> str:
-    """Try each model in fallback list until one succeeds."""
     last_error = None
-    
     for model in MODELS:
         try:
-            # Update agent model
             coordinator_agent.model = model
-            
             session_service = InMemorySessionService()
             await session_service.create_session(
                 app_name="acepilot", user_id="user", session_id=session_id
@@ -69,19 +59,16 @@ async def run_coordinator(prompt: str, session_id: str = "default") -> str:
                     for part in event.content.parts:
                         if hasattr(part, "text") and part.text:
                             parts.append(part.text)
-            
             result = "".join(parts)
             if result.strip():
                 return result
-                
         except Exception as e:
             err = str(e)
             if "429" in err or "RESOURCE_EXHAUSTED" in err or "404" in err or "NOT_FOUND" in err:
                 last_error = e
-                continue  # Try next model
+                continue
             else:
-                raise  # Unknown error, raise immediately
-    
+                raise
     raise Exception(f"All models exhausted. Last error: {last_error}")
 
 def generate_career_report(resume_text: str, skills: str, career_goal: str, session_id: str = "default") -> str:
